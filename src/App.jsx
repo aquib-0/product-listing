@@ -1,33 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Link, Route, Routes } from 'react-router-dom'
+import Home from './components/Home'
+import ShoppingCart from './components/ShoppingCart'
+import Shopping from './components/Shopping'
+import ShoppingCartPage from './components/ShoppingCartPage'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className='w-[100vw] h-[100vh] flex flex-col overflow-y-scroll'>
+      <div className='w-full h-[10vh] border border-white rounded-md flex justify-between px-2'>
+        <div className='h-full flex items-center'>
+          <span className='text-white font-extrabold text-2xl'>The Indian Store!</span>
+        </div>
+        <div className='h-full flex items-center gap-x-6'>
+          <Link to='/' className='hover:text-purple-500 transition-all ease-in-out'>Home</Link>
+          <Link to='/shopping' className='hover:text-purple-500 transition-all ease-in-out'>Shopping</Link>
+          <Link to='/cart'><ShoppingCart /></Link>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className='w-full h-[90vh]'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/shopping' element={<Shopping />} />
+          <Route path='/cart' element={<ShoppingCartPage />} />
+        </Routes>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    </div>
     </>
   )
 }
